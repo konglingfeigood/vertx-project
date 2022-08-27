@@ -11,6 +11,8 @@
     <properties>
         <vertx.version>4.3.1</vertx.version>
         <mysql.version>8.0.20</mysql.version>
+        <kafka.version>2.6.0</kafka.version>
+        <debezium.version>0.8.3.Final</debezium.version>
         <main.class>com.kong.vertx.ServerApplication</main.class>
     </properties>
 
@@ -65,6 +67,7 @@
             <version>${vertx.version}</version>
         </dependency>
 
+        <!--mysql-->
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-mysql-client</artifactId>
@@ -83,16 +86,68 @@
             <version>1.7.22</version>
         </dependency>
 
+
+        <!--zipkin-->
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-zipkin</artifactId>
             <version>${vertx.version}</version>
         </dependency>
 
+
+        <!--mqtt-->
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-mqtt</artifactId>
             <version>${vertx.version}</version>
+        </dependency>
+
+        <!--kafka-->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-kafka-client</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-core</artifactId>
+            <version>${debezium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-core</artifactId>
+            <version>${debezium.version}</version>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.12</artifactId>
+            <version>${kafka.version}</version>
+        </dependency>
+
+        <!--redis-->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-redis-client</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+
+        <!--mail-->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-mail-client</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.subethamail</groupId>
+            <artifactId>subethasmtp</artifactId>
+            <version>3.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
         </dependency>
 
     </dependencies>
@@ -144,12 +199,15 @@
                                         <manifestEntries>
                                             <Main-Class>com.kong.vertx.ServerApplication</Main-Class>
                                             <!--配置自己的主Verticle -->
-                                            <Main-Verticle>com.kong.vertx.service.HttpServerVerticle</Main-Verticle>
+                                            <Main-Verticle>com.kong.vertx.service.http.HttpServerVerticle
+                                            </Main-Verticle>
                                         </manifestEntries>
                                     </transformer>
                                 </transformers>
-                                <artifactSet />
-                                <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
+                                <artifactSet/>
+                                <outputFile>
+                                    ${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
+                                </outputFile>
                             </configuration>
                         </execution>
                     </executions>

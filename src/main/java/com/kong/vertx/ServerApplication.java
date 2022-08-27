@@ -8,7 +8,7 @@ package com.kong.vertx;
 
 import com.kong.vertx.eventbus.EventBusConsumerVerticle;
 import com.kong.vertx.service.FuturePromiseVerticle;
-import com.kong.vertx.service.HttpServerVerticle;
+import com.kong.vertx.service.http.HttpServerVerticle;
 import com.kong.vertx.service.WorkerVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;

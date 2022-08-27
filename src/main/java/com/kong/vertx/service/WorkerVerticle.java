@@ -30,7 +30,7 @@ public class WorkerVerticle extends AbstractVerticle {
                 .setInstances(8)
                 .setWorker(true)
                 .setConfig(config);
-        vertx.deployVerticle("com.kong.vertx.service.TimerVerticle", options);
+        vertx.deployVerticle("com.kong.vertx.service.schedule.TimerVerticle", options);
 
     }
 }
